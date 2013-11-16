@@ -1,0 +1,60 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  hello: "Hello world"
+  sign_in: "Sign In"
+  sign_up: "Sign Up"
+  edit: "Edit"
+  username: "User Name"
+  peachjar_header: "File Sharing Portal"
+  create_new_folder: "Create New Folder"
+  folder_name: "Folder Name"
+  create: "Create"
+  upload_file: "Upload New File"
+  upload: "Upload"
+  welcome: "Welcome"
+  update: "Update"
+  preview: "Preview"
+  close: "Close"
+  del: "Delete"
+  edit_pro: "Edit Profile"
+  email_config: "Sender Email Configuration"
+  s_email: "Sender Email"
+  pwd: "Email Password"
+  smtp: "Smtp Address"
+  port: "Smtp Port"
+  save: "Save"
+  email_con: "Email Configuration"
+  email_temp: "Email Template"
+  root_page: "Home Page"
+  saved: "Saved"
+  mail_subject: "Email Subject"
+  mail_body: "Email Body"
+  mail_addrs: "Email Adresses"
+  db_auth_error: "You need to Authorize this application with Dropbox.Please Click on Authorize Button"
+  f_name: "File Name"
+  f_size: "File Size"
+  m_date: "Modified Date"
+  actions: "Actions"
+  temp_name: "Template Name"
+  show_temp: "Show Templates"
+  new_email_temp: "New Email Template"

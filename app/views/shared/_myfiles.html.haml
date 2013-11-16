@@ -1,0 +1,39 @@
+-if !@client.nil?
+	%table.table.table-bordered
+		%tr
+			%th
+				=t(:f_name) 
+			%th
+				=t(:f_size) 
+			%th
+				=t(:m_date) 
+			%th
+				=t(:actions) 
+			-if !@files_array.nil?
+				-@files_array.each do |f|
+					%tr
+						%td 
+							-file_path=f['path']
+							-file_name=file_path.split("/").last
+							-name=image_tag("dropbox/16/#{f["icon"]}.gif")+file_name
+							-if f['is_dir']==false
+								=link_to name ,dropbox_download_path(:file=>file_path)
+							-else 
+								=link_to name,controller: :dropbox,action: :list,current_folder: file_path[1..-1] 
+
+						%td 
+							=f['size']
+						%td 
+							-if f['client_mtime'].nil?
+								='--'
+							-else
+								=f['client_mtime'].split('+')[0]
+						%td
+							=link_to '', dropbox_share_path(:file=>file_path,:icon=>f["icon"],:file_type=>f['mime_type']),{class:"icon-share",title:"Share Link"}
+							=link_to '', dropbox_destroy_path(:file=>file_path,:current_folder=> file_path[1..-1],),{class:"icon-trash", title:"Delete", :remove =>true}
+-else
+	%div.alert.alert-error 
+		=t(:db_auth_error)
+		=link_to 'Authorize',oauth_auth_start_path ,{:class=>"btn btn-primary"}
+
+					

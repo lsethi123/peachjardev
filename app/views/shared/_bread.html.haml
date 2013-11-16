@@ -1,0 +1,13 @@
+-if !@client.nil?
+	%ul.breadcrumb
+		%li
+			=link_to 'Home',{controller: :dropbox,action: :list}
+			%span.divider >
+		-path=[]
+		-if !params[:current_folder].nil?
+			-params[:current_folder].split('/').each do |d| 
+				-path.push d
+				%li
+					=link_to d,{controller: :dropbox,action: :list,current_folder: path.join('/')}
+					%span.divider >
+					

@@ -1,0 +1,42 @@
+=render 'shared/navigation'
+
+%div.bs-docs-example
+	%ul.nav.nav-pills
+		%li.active
+			=link_to t(:email_con),"#mailconfigModal",{"data-toggle" => "modal"}
+		%li.active
+			=link_to t(:email_temp),"#templateModal",{"data-toggle" => "modal"}
+
+:javascript
+	$(window).load(function(){
+		if( window.chrome){
+			$('#templateModal').css('top','5%');
+		}
+		else{
+			$('#templateModal').css('top','-20%');
+		}
+		$('#templateModal').modal('show');
+		$('body').on('click', function(e) {
+			e.stopPropagation();
+		});
+	});
+#templateModal.modal.hide.fade{:role=> "dialog","data-keyboard"=>false ,"data-backdrop"=>"static"}
+	=form_tag admin_save_template_path, :method=>'post',:class=>'form-horizontal' do
+		.modal-header
+			=link_to 'x',:back,{class:"close"}
+			%h5#myModalLabel 
+				=t(:email_temp)
+		.modal-body
+			.control-group
+				%label.control-label{:for => "temp_name"}
+					=t(:temp_name) 
+				.controls
+					=text_field_tag 'temp_name',@ET.name,class:"mail_subject"
+				%label.control-label{:for => "mail_body"}
+					=t(:mail_body) 
+				.controls
+					=text_area_tag 'mail_body',@ET.body, class:"mail_body"
+					=hidden_field_tag 'id',@ET.id
+		.modal-footer
+			=link_to 'Cancel',:back,{class:"btn btn-primary"}
+			=button_tag "#{t(:save)}",{class:"btn btn-primary",id:'save'}

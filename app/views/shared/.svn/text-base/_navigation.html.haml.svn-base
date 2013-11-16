@@ -1,0 +1,85 @@
+-hpath= hidden_field_tag 'current_folder',params[:current_folder]
+#myModal.modal.hide.fade{:role=> "dialog"}
+	=form_tag dropbox_folder_path, :method=>'post',:class=>'form-horizontal' do
+		.modal-header
+			%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+			%h4#myModalLabel Create New Folder
+		.modal-body
+			.control-group
+				%label.control-label{:for => "inputFolder"} Folder Name
+			.controls
+				=text_field_tag 'folder_name',nil
+				=hpath
+		.modal-footer
+			%button.btn.btn-primary Create
+
+#fileModal.modal.hide.fade{:role=> "dialog"}
+	=form_tag dropbox_upload_path, :method=>'post', :multipart => true,:class=>'navbar-form' do
+		.modal-header
+			%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+			%h4 Upload  New File
+		.modal-body
+			= file_field_tag "file"
+			=hpath
+		.modal-footer
+			%button.btn.btn-primary Upload
+
+#emailModal.modal.hide.fade{:role=> "dialog"}
+	=form_tag dropbox_upload_path, :method=>'post', :multipart => true,:class=>'form-horizontal' do
+		.modal-header
+			%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+			%h4#myModalLabel Share File With User
+		.modal-body
+			.control-group
+				%label.control-label{:for => "eamil_addresses"} Email Adresses
+				.controls
+					=text_field_tag 'emails',nil
+			.control-group
+				%label.control-label{:for => "eamil_subject"} Subject
+				.controls
+					=text_field_tag 'subject',nil
+			.control-group
+				%label.control-label{:for => "eamil_body"} Body
+				.controls
+					= text_area_tag "body"
+					=hpath
+		.modal-footer
+			%button.btn.btn-primary Share
+
+
+.clearfix
+	.pull-left
+		%b Welcome
+		=@account_info['display_name']
+		-#%b User Email:
+		=#@account_info['email']
+	.pull-right
+		.btn-group
+			%a.btn.btn-primary{href: "#"}
+				%i.icon-user.icon-white
+				=@account_info['email']
+			%a.btn.btn-primary.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+				%span.caret
+			%ul.dropdown-menu
+				%li
+					%a{"data-toggle" => "modal", :href => "#myModal", :role => "button"}
+						%i.icon-folder-open 
+						Create New Folder
+				%li
+					=link_to("#fileModal",{"data-toggle" => "modal"}) do
+						%i.icon-file
+						Upload New File
+				%li
+					=link_to(dropbox_logout_path,title:'Logout') do
+						%i.icon-off
+						Logout
+%ul.breadcrumb
+	%li
+		=link_to 'Home',{controller: :dropbox,action: :list}
+		%span.divider >
+	-path=[]
+	-params[:current_folder].split('/').each do |d| 
+		-path.push d
+		%li
+			=link_to d,{controller: :dropbox,action: :list,current_folder: path.join('/')}
+			%span.divider >

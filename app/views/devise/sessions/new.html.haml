@@ -1,0 +1,17 @@
+
+.container.login
+	.row
+		.center.span4.well
+			%legend
+				=t(:sign_in)
+			=form_for(resource, :as => resource_name, :class=>'form-horizontal',:url => session_path(resource_name) ) do |f|
+				.control-group
+					=f.text_field :username, {:class=>"controls span4",:autofocus => true,:placeholder=>"Username"}
+				.control-group
+					=f.password_field :password, {:class=>"controls span4",:placeholder=>"Password"}
+				.control-group
+					-if devise_mapping.rememberable?
+						%label.checkbox
+							=f.check_box :remember_me,{:class=>"controls"}
+							=f.label :remember_me,{:class=>"control-label"}
+					=f.submit t(:sign_in),{:class=>'btn btn-primary btn-block span4'}

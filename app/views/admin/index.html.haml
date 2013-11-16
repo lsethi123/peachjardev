@@ -1,0 +1,75 @@
+=render 'shared/navigation'
+
+#mailconfigModal.modal.hide.fade{:role=> "dialog"}
+	=form_tag admin_save_email_path, :method=>'post',:class=>'form-horizontal' do
+		.modal-header
+			%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+			%h5#myModalLabel 
+				=t(:email_config)
+		.modal-body
+			.control-group
+				%label.control-label{:for => "sender_email"}
+					=t(:s_email) 
+				.controls
+					=text_field_tag 's_email',@sender_email
+				%label.control-label{:for => "password"}
+					=t(:pwd) 
+				.controls
+					=password_field_tag 'password',nil
+				%label.control-label{:for => "smtp_address"}
+					=t(:smtp) 
+				.controls
+					=text_field_tag 'smtp_address',@smpt_address
+				%label.control-label{:for => "smtp_port"}
+					=t(:smtp_port) 
+				.controls
+					=text_field_tag 'smtp_port',@port
+					=hidden_field_tag 'id',@id
+		.modal-footer
+			=button_tag "#{t(:save)}",{class:"btn btn-primary",id:'save'}
+
+
+#templateModal.modal.hide.fade{:role=> "dialog"}
+	=form_tag admin_save_template_path, :method=>'post',:class=>'form-horizontal' do
+		.modal-header
+			%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+			%h5#myModalLabel 
+				=t(:email_temp)
+		.modal-body
+			.control-group
+				%label.control-label{:for => "temp_name"}
+					=t(:temp_name) 
+				.controls
+					=text_field_tag 'temp_name',nil,class:"mail_subject"
+				%label.control-label{:for => "mail_body"}
+					=t(:mail_body) 
+				.controls
+					=text_area_tag 'mail_body',nil, class:"mail_body"
+					=hidden_field_tag 'id',nil
+		.modal-footer
+			=button_tag "#{t(:save)}",{class:"btn btn-primary",id:'save'}
+%div.bs-docs-example
+	%ul.nav.nav-pills
+		%li.active
+			=link_to t(:email_con),"#mailconfigModal",{"data-toggle" => "modal"}
+		%li.active
+			=link_to t(:new_email_temp),"#templateModal",{"data-toggle" => "modal"}
+-if !@ET.empty?
+	%table.table.table-bordered
+		%tr
+			%th
+				=t(:temp_name) 
+			%th
+				=t(:m_date) 
+			%th
+				=t(:actions) 
+		-@ET.each do |et|
+			%tr
+				%td
+					=et.name
+				%td
+					=et.updated_at
+				%td
+					=link_to '', admin_edit_template_path(:id=>et.id),{class:"icon-edit", title:"Edit"}
+					=link_to '', admin_delete_template_path(:id=>et.id),{class:"icon-trash", title:"Delete", :remove =>true}
+

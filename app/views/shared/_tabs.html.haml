@@ -1,0 +1,16 @@
+#content
+	%ul#tabs.nav.nav-tabs{"data-tabs" => "tabs"}
+		%li{class: myfiles(!@active)}
+			%a{data:{target: "#shared_tab",toggle:"tab"}, href: "#shared"} Links From Others 
+		%li{class: myfiles(@active)}
+			%a{data:{target: "#dropbox_tab",toggle:"tab"}, href: "#dropbox"} Dropbox
+	#my-tab-content.tab-content
+		#shared_tab.tab-pane{class: myfiles(!@active)}
+			=#render 'shared/nav',locals: {files_array: @share_files,myfiles:false}
+			=render 'shared/sharefiles'
+		#dropbox_tab.tab-pane{class: myfiles(@active)}
+			=render 'shared/dbactions'
+			=render 'shared/bread'
+			=#render 'shared/nav',locals: {files_array: @myfiles_array,myfiles:true}
+			=render 'shared/myfiles'
+			

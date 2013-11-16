@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  db_access_token: MyString
+  db_user_id: 1
+  user_id: 1
+
+two:
+  db_access_token: MyString
+  db_user_id: 1
+  user_id: 1

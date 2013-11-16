@@ -1,0 +1,44 @@
+#viewModal.modal.fade.hide{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+	.modal-header
+		%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+		%h5#myModalLabel Preview
+	.modal-body
+	.modal-footer
+		%button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+
+-http_client = HTTPClient.new
+%table.table.table-bordered
+	%tr
+		%th Name
+		%th Created Date
+		%th Actions
+		-if !@share_files_array.nil?
+			-@share_files_array.each do |f|
+				%tr
+					%td 
+						-file_path=f.file_name
+						-file_name=file_path.split("/").last
+						-name=image_tag("dropbox/16/#{f["icon"]}.gif")+file_name
+						-if f["icon"]=~/picture/i
+							-anchor_class="image_data"
+						-else
+							-anchor_class="text_data"
+						-if f["icon"]!="folder"
+							-share_link_url=get_share_link_url(f.link_url,http_client)
+							-preview_link=link_to name,"javascript:void(0);",{class: anchor_class,data:{href:share_link_url,target: "#viewModal", toggle:"modal",type:f["mime_type"]}}
+							-download_link=link_to '', share_link_url.concat("?dl=1"),{class:"icon-download-alt",title:"Download"}
+						-else
+							-share_link_url=f.link_url
+							-preview_link=link_to name,share_link_url,{:target => "_blank"}
+							-folder_downlod_url=get_share_link_url(f.link_url,http_client).gsub('/sh/','/shz/').concat("/#{file_name}")
+							-download_link=link_to '', folder_downlod_url,{class:"icon-download-alt",title:"Download"}
+						=preview_link
+					%td 
+						-if f.created_at.nil?
+							='--'
+						-else
+							=f.created_at.to_s.split('+')[0]
+					%td
+						=download_link
+						=link_to '', dropbox_destroy_link_path(:id=>f.id),{class:"icon-trash",title:"Delete"}	
+					

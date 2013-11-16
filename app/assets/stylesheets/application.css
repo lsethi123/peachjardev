@@ -1,0 +1,75 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ * =require bootstrap.min
+ */
+
+.login{
+	padding-top: 65px;
+	padding-left: 200px;
+}
+.center{float: none; margin-left: auto; margin-right: auto;}
+ .logo_div{
+ 	padding-bottom: 15px;
+ }
+ .logo{
+ 	width: 280px;
+ 	vertical-align: middle;
+ }
+ .header_text{
+ 	font-weight: bolder;
+	font-size: 30px;
+	vertical-align: middle;
+	color: #D1881A;
+	padding-left: 15px;
+ }
+.modal-body .control-group{float:left;
+}
+body{
+	overflow: auto;
+}
+.body_bgclor{
+ background-color: #73786d;
+}
+#viewModal{
+	width:85%;
+	top:1%;
+	left:33%;
+}
+.iframe_data{
+	width:95%;	
+	height:80%;
+}
+#viewModal .modal-body{
+	height:70%;
+}
+.controls{
+	padding-bottom: 20px;
+}
+.mail_body{
+	margin: 0px;
+	width: 335px;
+	height: 155px;
+}
+.mail_subject{
+	width: 335px;
+}
+.dropdown-menu{
+	width:205px;
+}
+.mail_addrs{
+	margin: 0px;
+	width: 335px;
+}
+.modal-footer {
+	padding: 15px 15px 0px;
+}

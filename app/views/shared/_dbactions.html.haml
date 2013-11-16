@@ -1,0 +1,46 @@
+-if !@client.nil?
+	-hpath= hidden_field_tag 'current_folder',params[:current_folder]
+	#myModal.modal.hide.fade{:role=> "dialog"}
+		=form_tag dropbox_folder_path, :method=>'post',:class=>'form-horizontal' do
+			.modal-header
+				%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+				%h5#myModalLabel 
+					=t(:create_new_folder)
+			.modal-body
+				.control-group
+					%label.control-label{:for => "inputFolder"}
+						=t(:folder_name) 
+				.controls
+					=text_field_tag 'folder_name',nil
+					=hpath
+			.modal-footer
+				%button.btn.btn-primary
+					=t(:create)
+
+	#fileModal.modal.hide.fade{:role=> "dialog"}
+		=form_tag dropbox_upload_path,:method=>'post', :multipart => true,:class=>'navbar-form' do
+			.modal-header
+				%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+				%h5
+					=t(:upload_file)
+			.modal-body
+				= file_field_tag "file"
+				=label_tag 'enc', 'Encrypt:'
+				.input-group
+					.btn-group{"data-toggle" => "buttons"}
+						%label.btn.btn-default 
+							=radio_button_tag 'options', 'Y'
+							Yes
+						%label.btn.btn-default
+							=radio_button_tag 'options', 'N',checked = true
+							No
+				=hpath
+			.modal-footer
+				%button.btn.btn-primary
+					= t(:upload)
+
+	
+				
+	%div.pull-right
+		=link_to(image_tag("newfl.png",:title=>'Create New Folder'),"#myModal",{"data-toggle" => "modal"})
+		=link_to(image_tag("newf.png",:title=>'Create New File'),"#fileModal",{"data-toggle" => "modal"})

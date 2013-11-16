@@ -1,0 +1,48 @@
+=render 'shared/navigation'
+-file=@SL.file_name.split('/').last
+-path=@SL.file_name.gsub(file,'').chop
+-default_subject=create_subject(file)
+-defuault_body=create_body(@SL.link_url,file)
+-hpath= hidden_field_tag 'current_folder',path
+-share_link_id_hidden=  hidden_field_tag 'link_id',@SL.id
+:javascript
+	$(window).load(function(){
+		if( window.chrome){
+			$('#emailModal').css('top','5%');
+		}
+		else{
+			$('#emailModal').css('top','-20%');
+		}
+		$('#emailModal').modal('show');
+		$('body').on('click', function(e) {
+			e.stopPropagation();
+		});
+	});
+#emailModal.modal.hide.fade{:role=> "dialog","data-keyboard"=>false ,"data-backdrop"=>"static"}
+	=form_tag dropbox_share_with_user_path,:method=>'post', :class=>'form-horizontal',:id=>'share_link_form' do
+		.modal-header
+			=link_to 'x',:back,{class:"close"}
+			%h5#emailModalLabel
+				Share Link: 
+		.modal-body
+			.control-group
+				%label.control-label{:for => "email_addresses"} 
+					=t(:mail_addrs)
+				.controls
+					=text_area_tag 'emails',nil,{"data-items" => "8", "data-provide" => "typeahead", "data-source" => @user_emails.to_json, :style => "margin: 0 auto;",class:"mail_addrs"}
+					=#text_field_tag 'emails',nil
+			.control-group
+				%label.control-label{:for => "email_subject"}
+					=t(:mail_subject)  
+				.controls
+					=text_field_tag 'subject',default_subject,class:"mail_subject"
+			.control-group
+				%label.control-label{:for => "email_body"} 
+					=t(:mail_body) 
+				.controls
+					= text_area_tag "body",defuault_body.html_safe, class:"mail_body"
+					=share_link_id_hidden
+					=hpath
+		.modal-footer
+			=link_to 'Cancel',:back,{class:"btn btn-primary"}
+			%button.btn.btn-primary Share

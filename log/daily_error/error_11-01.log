@@ -1,0 +1,30 @@
+ERROR  02:04:29 : undefined local variable or method `negotiation' for #<#<Class:0x0000000486b678>:0x0000000486a660>
+/home/lalit/open_work/peachjardev/app/views/shared/_myfiles.html.haml:31:in `block in _app_views_shared__myfiles_html_haml__2468811095941031561_24357600'
+ERROR  02:08:07 : exception class/object expected
+/home/lalit/open_work/peachjardev/app/controllers/dropbox_controller.rb:79:in `raise'
+ERROR  07:48:47 : getaddrinfo: Name or service not known
+/home/lalit/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/net/http.rb:878:in `initialize'
+ERROR  07:48:50 : getaddrinfo: Name or service not known
+/home/lalit/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/net/http.rb:878:in `initialize'
+ERROR  07:48:52 : getaddrinfo: Name or service not known
+/home/lalit/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/net/http.rb:878:in `initialize'
+ERROR  07:49:26 : getaddrinfo: Name or service not known
+/home/lalit/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/net/http.rb:878:in `initialize'
+ERROR  08:52:10 : exception class/object expected
+/home/lalit/open_work/peachjardev/app/controllers/dropbox_controller.rb:79:in `raise'
+ERROR  08:57:26 : exception class/object expected
+/home/lalit/open_work/peachjardev/app/controllers/dropbox_controller.rb:79:in `raise'
+ERROR  08:57:43 : exception class/object expected
+/home/lalit/open_work/peachjardev/app/controllers/dropbox_controller.rb:79:in `raise'
+ERROR  08:57:57 : exception class/object expected
+/home/lalit/open_work/peachjardev/app/controllers/dropbox_controller.rb:79:in `raise'
+ERROR  09:00:41 : exception class/object expected
+/home/lalit/open_work/peachjardev/app/controllers/dropbox_controller.rb:79:in `raise'
+ERROR  09:01:03 : exception class/object expected
+/home/lalit/open_work/peachjardev/app/controllers/dropbox_controller.rb:79:in `raise'
+ERROR  09:02:01 : exception class/object expected
+/home/lalit/open_work/peachjardev/app/controllers/dropbox_controller.rb:79:in `raise'
+ERROR  09:02:03 : exception class/object expected
+/home/lalit/open_work/peachjardev/app/controllers/dropbox_controller.rb:79:in `raise'
+ERROR  09:02:14 : exception class/object expected
+/home/lalit/open_work/peachjardev/app/controllers/dropbox_controller.rb:79:in `raise'
